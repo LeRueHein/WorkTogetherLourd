@@ -1,0 +1,53 @@
+﻿<Window x:Class="WorkTogether.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkTogether.Wpf"
+        mc:Ignorable="d"
+        Title="ConnexionView" Height="450" Width="800">
+    <Grid>
+        
+        <Grid ShowGridLines="True">
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+
+            <StackPanel>
+                <Button x:Name="ButtonAccueil" Content="Accueil"  Width="130" Height="70" Click="ButtonAccueil_Click" ></Button>
+                <Button x:Name="ButtonBaies" Content="Baies" Width="130" Height="70" Click="ButtonBaies_Click"></Button>
+                <Button x:Name="ButtonPack" Content="Pack" Width="130" Height="70" Click="ButtonPack_Click"></Button>
+                <Button x:Name="ButtonClient" Content="Client" Width="130" Height="70" Click="ButtonClient_Click"></Button>
+                <Button x:Name="ButtonReservation" Content="Reservation" Width="130" Height="70" Click="ButtonReservation_Click"></Button>
+                <Button x:Name="ButtonCompte" Content="Compte" Width="130" Height="70" Click="ButtonCompte_Click"></Button>
+
+            </StackPanel>
+            <DockPanel x:Name="DockPanelShow" Grid.Column="1"></DockPanel>
+        </Grid>
+
+        <Grid Background="Black" Visibility="{Binding IsLogin, Converter={StaticResource SharedObjectToVisibilityBoolConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Grid.Column="1" Background="White" Orientation="Vertical">
+                <Label Content="Email :"/>
+                <TextBox Text="{Binding Login}" />
+                <Label Content="Mot de passe :"/>
+                <TextBox Text="{Binding Password}" />
+                <Button Content="Connexion" Click="Button_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</Window>
