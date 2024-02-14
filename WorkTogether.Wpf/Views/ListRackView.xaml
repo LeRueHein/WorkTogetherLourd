@@ -1,12 +1,12 @@
 ﻿<UserControl x:Class="WorkTogether.Wpf.Views.ListRackView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WorkTogether.Wpf.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      >
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WorkTogether.Wpf.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
 
     <Grid Background="MediumPurple">
         <Grid>
@@ -14,43 +14,58 @@
                 <StackPanel.Resources>
                     <Style TargetType="Expander">
                         <Style.Resources>
-                            <LinearGradientBrush x:Key="BackBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-                                <GradientStop Color="MediumPurple" Offset="0.1" />
-                                <GradientStop Color="MediumPurple" Offset="0.9" />
+                            <LinearGradientBrush x:Key="BackBrush"
+                                                 StartPoint="0.5,0"
+                                                 EndPoint="0.5,1">
+                                <GradientStop Color="MediumPurple"
+                                              Offset="0.1" />
+                                <GradientStop Color="MediumPurple"
+                                              Offset="0.9" />
                             </LinearGradientBrush>
                         </Style.Resources>
-                       
+
                     </Style>
                 </StackPanel.Resources>
-                
+
 
                 <StackPanel>
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Text="Les Baies"></TextBlock>
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="30"
+                               Text="Les Baies"></TextBlock>
 
 
-                    <DataGrid
-                     Margin="15"
-                     Height="250"
-                     Background="Transparent" 
-                     Name="DatagridClient"
-                     ItemsSource="{Binding Racks}"
-                     SelectedItem="{Binding SelectedRacks}"
-                     DisplayMemberPath="Id"
-                     AutoGenerateColumns="False"
-                     RowBackground="Transparent"
-                     GridLinesVisibility="All"
-                     HorizontalGridLinesBrush="Black"
-                     VerticalGridLinesBrush="Black"
-                     IsReadOnly="False"
-                     CanUserAddRows="False"
-                     CanUserDeleteRows="False"
-                        >
-                     
+                    <DataGrid Margin="15"
+                              Height="250"
+                              Background="Transparent"
+                              Name="DatagridClient"
+                              ItemsSource="{Binding Racks}"
+                              SelectedItem="{Binding SelectedRacks}"
+                              DisplayMemberPath="Id"
+                              AutoGenerateColumns="False"
+                              RowBackground="Transparent"
+                              GridLinesVisibility="All"
+                              HorizontalGridLinesBrush="Black"
+                              VerticalGridLinesBrush="Black"
+                              IsReadOnly="False"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False">
+
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="100"/>
-                            <DataGridTextColumn Header="Nb slot" Binding="{Binding NumberSlot}" Width="100"/>
+                            <DataGridTextColumn Header="Id"
+                                                Binding="{Binding Id}"
+                                                Width="100" />
+                            <DataGridTextColumn Header="Nb slot"
+                                                Binding="{Binding NumberSlot}"
+                                                Width="100" />
+                            
+                            <DataGridTextColumn Header="% utilisé"
+                                                Binding="{Binding }"
+                                                Width="100" />
                         </DataGrid.Columns>
                     </DataGrid>
+
+                  
 
 
 
@@ -60,18 +75,24 @@
 
                     <TextBlock Background="DarkGray"></TextBlock>
 
-                    
+
 
 
                     <!-- Pour ajouter -->
                     <TextBlock Background="DarkGray"></TextBlock>
-                    <Label Content="Ajouter une baie" HorizontalAlignment="Center"></Label>
+                    <Label Content="Ajouter une baie"
+                           HorizontalAlignment="Center"></Label>
 
-                    <Button Content="Ajouter" x:Name="Ajouter" Command="{Binding CommandAddRack}"/>
+                    <Button Content="Ajouter"
+                            x:Name="Ajouter"
+                            Command="{Binding CommandAddRack}" />
 
-                    <Label Content="Supprimer une baie" HorizontalAlignment="Center"></Label>
+                    <Label Content="Supprimer une baie"
+                           HorizontalAlignment="Center"></Label>
 
-                    <Button Content="Supprimer" x:Name="Supprimer" Command="{Binding CommandDelRack}"/>
+                    <Button Content="Supprimer"
+                            x:Name="Supprimer"
+                            Command="{Binding CommandDelRack}" />
                 </StackPanel>
             </StackPanel>
         </Grid>

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using WorkTogether.Wpf.ViewModels;
 
 
 namespace WorkTogether.Wpf.Views
@@ -11,6 +12,7 @@ namespace WorkTogether.Wpf.Views
         public WelcomeView()
         {
             InitializeComponent();
+            
         }
     }
 }

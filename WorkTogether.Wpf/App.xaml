@@ -5,5 +5,6 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <converters:ObjectToVisibilityBoolConverter x:Key="SharedObjectToVisibilityBoolConverter"/>
+        <converters:ObjectToVisibilityComptableConverter x:Key="SharedObjectToVisibilityComptableConverter" />
     </Application.Resources>
 </Application>

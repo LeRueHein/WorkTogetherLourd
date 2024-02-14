@@ -61,7 +61,7 @@ namespace WorkTogether.Wpf.ViewModels
         /// Obtient et défini la Reservation selectionné
         /// </summary>
         public Reservation SelectedReservations
-        { 
+        {
             get => _SelectedReservation;
             set => SetProperty(nameof(SelectedReservations), ref _SelectedReservation, value);
         }
@@ -81,7 +81,6 @@ namespace WorkTogether.Wpf.ViewModels
         public DelegateCommand<object> CommandModifyReservation { get => _CommandModifyReservation; set => _CommandModifyReservation = value; }
 
         #endregion
-
 
         #region Construsteur
         /// <summary>
@@ -159,34 +158,26 @@ namespace WorkTogether.Wpf.ViewModels
         }
 
 
+        /// <summary>
+        /// Créez une instance du fichier PDF en créant une instance du PDF   
+        /// Classe Writer utilisant le document et le filestrem dans le constructeur.
+        /// </summary>
         internal void ExportToPdf()
         {
 
-
-
-            // Créez une instance du fichier PDF en créant une instance du PDF   
-            // Classe Writer utilisant le document et le filestrem dans le constructeur.  
             StringBuilder stringBuilder = new();
 
-
             stringBuilder.AppendLine("Liste des réservations : " + Environment.NewLine);
-
 
             foreach (var resa in this.Reservations)
             {
                 stringBuilder.AppendLine("Code : " + resa.Code + "Prix : " + resa.Price + "€" + "Nom du pack" + resa.Pack.Name);
             }
 
-
-
-
-
-            System.IO.FileStream fs = new FileStream("toto.pdf", FileMode.Create);
+            System.IO.FileStream fs = new FileStream("Reservation" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".pdf", FileMode.Create);
 
 
             Document document = new Document(PageSize.A4, 25, 25, 30, 30);
-            // Créez une instance du fichier PDF en créant une instance du PDF   
-            // Classe Writer utilisant le document et le filestrem dans le constructeur.  
 
             PdfWriter writer = PdfWriter.GetInstance(document, fs);
 

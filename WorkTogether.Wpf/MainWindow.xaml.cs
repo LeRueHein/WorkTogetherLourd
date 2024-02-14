@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using WorkTogether.Wpf.ViewModels;
 using WorkTogether.Wpf.Views;
 
@@ -16,10 +18,15 @@ namespace WorkTogether.Wpf
         {
             InitializeComponent();
             this.DataContext = new ConnexionViewModel();
-
-
+            DockPanelShow.Children.Clear();
+            DockPanelShow.Children.Add(new WelcomeView());
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// button qui permet la connexion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click_Connexion(object sender, RoutedEventArgs e)
         {
             ((ConnexionViewModel)this.DataContext).ConnexionValidator();
         }
@@ -58,6 +65,12 @@ namespace WorkTogether.Wpf
         {
             DockPanelShow.Children.Clear();
             DockPanelShow.Children.Add(new ListReservationView());
+        }
+
+        private void passwordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ((ConnexionViewModel)this.DataContext).Password = ((PasswordBox)sender).Password;
+
         }
     }
 }

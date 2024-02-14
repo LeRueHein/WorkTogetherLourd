@@ -12,22 +12,32 @@ public partial class Rack : IEditableObject
 
     public int NumberSlot { get; set; }
 
+    
+
+
+
+
 
 
 
     public virtual ICollection<Unit> Units { get; set; } = new List<Unit>();
+    
 
     private Rack backupCopy;
 
+    /// <summary>
+    /// Sauvegarde une copie des données originales
+    /// </summary>
     public void BeginEdit()
     {
-        // Sauvegarde une copie des données originales
         backupCopy = MemberwiseClone() as Rack;
     }
 
+    /// <summary>
+    /// Annule les modifications en restaurant les données originales
+    /// </summary>
     public void CancelEdit()
     {
-        // Annule les modifications en restaurant les données originales
         if (backupCopy != null)
         {
             Id = backupCopy.Id;

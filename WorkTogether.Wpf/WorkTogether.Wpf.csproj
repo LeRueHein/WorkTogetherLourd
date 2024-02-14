@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BCrypt.Net" Version="0.1.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="BoldReports.WPF" Version="5.3.12" />
     <PackageReference Include="Grpc.Core" Version="2.46.6" />
     <PackageReference Include="iTextSharp" Version="5.5.13.3" />

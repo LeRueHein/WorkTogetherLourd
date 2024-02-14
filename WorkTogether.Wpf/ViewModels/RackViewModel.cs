@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text;
 using WebAndSoft.Internal;
 using WorkTogether.DBLib.Class;
 
@@ -54,9 +55,9 @@ namespace WorkTogether.Wpf.ViewModels
         /// obtient et défini la rack séléctionné
         /// </summary>
         public Rack? SelectedRacks
-        { 
-            get => _SelectedRack; 
-            set => SetProperty(nameof(SelectedRacks), ref _SelectedRack, value); 
+        {
+            get => _SelectedRack;
+            set => SetProperty(nameof(SelectedRacks), ref _SelectedRack, value);
         }
 
         /// <summary>
@@ -83,12 +84,10 @@ namespace WorkTogether.Wpf.ViewModels
         /// </summary>
         public RackViewModel()
         {
+
             CommandAddRack = new DelegateCommand<object>(AddRack).ObservesProperty(() => this.SelectedRacks);
             CommandDelRack = new DelegateCommand<object>(DelRack).ObservesProperty(() => this.SelectedRacks);
             CommandModifyRack = new DelegateCommand<object>(ModifyRack).ObservesProperty(() => this.SelectedRacks);
-
-
-
 
             using (ClientLegerBddContext context = new ClientLegerBddContext())
             {
@@ -97,8 +96,22 @@ namespace WorkTogether.Wpf.ViewModels
         }
         #endregion
 
-
         #region Method
+
+        internal StringBuilder PourcentRempliRack()
+        {
+            using (ClientLegerBddContext context = new ClientLegerBddContext())
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                foreach (Rack rack in Racks)
+                {
+                    double pourcentRempliRacks = (rack.Units.Where(u => u.Reservation != null).Count()) * 100.00 / 42;
+                    stringBuilder.AppendLine("Baie°" + rack.Id + ": " + pourcentRempliRacks + "%");
+                }
+                return stringBuilder;
+            }
+        }
 
         /// <summary>
         /// ajouter une nouvelle baie
@@ -126,6 +139,7 @@ namespace WorkTogether.Wpf.ViewModels
             {
                 if (SelectedRacks is not null)
                 {
+                    context.Units.RemoveRange(SelectedRacks.Units);     
                     context.Racks.Remove(SelectedRacks);
                     this.Racks.Remove(SelectedRacks);
                     context.SaveChanges();

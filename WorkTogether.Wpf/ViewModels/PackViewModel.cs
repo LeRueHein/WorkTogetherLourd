@@ -46,7 +46,7 @@ namespace WorkTogether.Wpf.ViewModels
         /// Obtient et défini la liste des packs
         /// </summary>
         public ObservableCollection<Pack> Packs
-        { 
+        {
             get => _Pack;
             set => SetProperty(nameof(Packs), ref _Pack, value);
         }
@@ -55,7 +55,7 @@ namespace WorkTogether.Wpf.ViewModels
         /// Obtient et défini le pack selectionné
         /// </summary>
         public Pack SelectedPacks
-        { 
+        {
             get => _SelectedPack;
             set => SetProperty(nameof(SelectedPacks), ref _SelectedPack, value);
         }
@@ -101,11 +101,16 @@ namespace WorkTogether.Wpf.ViewModels
         /// ajouter un nouveau pack
         /// </summary>
         /// <param name="parameters"></param>
+        
         internal void AddPack(object parameters = null)
         {
             using (ClientLegerBddContext context = new ClientLegerBddContext())
             {
-                Pack packs = new Pack();
+                Pack packs = new Pack() { Price = 0 };
+                packs.NumberSlot = 0;
+                packs.Name = "pack";
+                
+                
                 context.Packs.Add(packs);
                 SelectedPacks = packs;
                 this.Packs.Add(packs);

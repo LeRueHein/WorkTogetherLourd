@@ -76,7 +76,6 @@ namespace WorkTogether.Wpf.ViewModels
 
         #endregion
 
-
         #region Construsteur
         /// <summary>
         /// Construteur

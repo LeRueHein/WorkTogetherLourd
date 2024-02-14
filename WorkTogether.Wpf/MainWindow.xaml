@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkTogether.Wpf"
         mc:Ignorable="d"
-        Title="ConnexionView" Height="450" Width="800">
+        Title="ConnexionView"
+        Height="800"
+        Width="1600">
     <Grid>
-        
+
         <Grid ShowGridLines="True">
 
 
@@ -18,34 +20,163 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel>
-                <Button x:Name="ButtonAccueil" Content="Accueil"  Width="130" Height="70" Click="ButtonAccueil_Click" ></Button>
-                <Button x:Name="ButtonBaies" Content="Baies" Width="130" Height="70" Click="ButtonBaies_Click"></Button>
-                <Button x:Name="ButtonPack" Content="Pack" Width="130" Height="70" Click="ButtonPack_Click"></Button>
-                <Button x:Name="ButtonClient" Content="Client" Width="130" Height="70" Click="ButtonClient_Click"></Button>
-                <Button x:Name="ButtonReservation" Content="Reservation" Width="130" Height="70" Click="ButtonReservation_Click"></Button>
-                <Button x:Name="ButtonCompte" Content="Compte" Width="130" Height="70" Click="ButtonCompte_Click"></Button>
+                
+                <Button x:Name="ButtonAccueil"
+                        Content="Accueil"
+                        Width="130"
+                        Height="70"
+                        Click="ButtonAccueil_Click"
+                        ></Button> 
+                
+                <Button x:Name="ButtonBaies"
+                        Content="Baies"
+                        Width="130"
+                        Height="70"
+                        Click="ButtonBaies_Click"
+                        Visibility="{Binding Path=User, Source={x:Static Application.Current}, Converter={StaticResource SharedObjectToVisibilityComptableConverter}, ConverterParameter='ROLE_ADMIN'}"></Button>
+                <Button x:Name="ButtonPack"
+                        Content="Pack"
+                        Width="130"
+                        Height="70"
+                        Click="ButtonPack_Click"
+                        Visibility="{Binding Path=User, Source={x:Static Application.Current}, Converter={StaticResource SharedObjectToVisibilityComptableConverter}, ConverterParameter='ROLE_ADMIN'}"></Button>
+                <Button x:Name="ButtonClient"
+                        Content="Client"
+                        Width="130"
+                        Height="70"
+                        Click="ButtonClient_Click"></Button>
+                <Button x:Name="ButtonReservation"
+                        Content="Reservation"
+                        Width="130"
+                        Height="70"
+                        Click="ButtonReservation_Click"></Button>
+                <Button x:Name="ButtonCompte"
+                        Content="Compte"
+                        Width="130"
+                        Height="70"
+                        Click="ButtonCompte_Click"></Button>
 
             </StackPanel>
-            <DockPanel x:Name="DockPanelShow" Grid.Column="1"></DockPanel>
+            <DockPanel x:Name="DockPanelShow"
+                       Grid.Column="1"></DockPanel>
         </Grid>
 
-        <Grid Background="Black" Visibility="{Binding IsLogin, Converter={StaticResource SharedObjectToVisibilityBoolConverter}}">
+        <Grid Background="Black"
+              Visibility="{Binding IsLogin, Converter={StaticResource SharedObjectToVisibilityBoolConverter}}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1" Grid.Column="1" Background="White" Orientation="Vertical">
-                <Label Content="Email :"/>
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        Background="White"
+                        Orientation="Vertical">
+                <!--<Label Content="Email :"/>
                 <TextBox Text="{Binding Login}" />
                 <Label Content="Mot de passe :"/>
-                <TextBox Text="{Binding Password}" />
-                <Button Content="Connexion" Click="Button_Click"/>
+                <PasswordBox  PasswordChanged="passwordBox_PasswordChanged" />-->
+                <!--<Button Click="Button_Click"></Button>-->
+
+
+
+
+                <Border Width="300"
+                        Height="400"
+                        Background="White"
+                        CornerRadius="6">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15"
+                                          Direction="-90"
+                                          RenderingBias="Quality"
+                                          ShadowDepth="2"
+                                          Color="Gray" />
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical"
+                                Margin="20">
+                        <TextBlock Text="Connexion"
+                                   FontSize="25"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   FontWeight="Bold"
+                                   Padding="10" />
+                        <Grid VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Email"
+                                       Grid.Row="0"
+                                       Margin="0,15"
+                                       HorizontalAlignment="Left" />
+                            <TextBlock Grid.Row="0"
+                                       Margin="0,15"
+                                       HorizontalAlignment="Left" />
+                            <TextBox Text="{Binding Login}"
+                                     Grid.Column="1"
+                                     Grid.Row="1"
+                                     Padding="0,5"
+                                     Width="255"
+                                     BorderThickness="0,0,0,1"
+                                     HorizontalAlignment="Left" />
+                            <TextBlock Text="Mot de passe"
+                                       Grid.Row="2"
+                                       Margin="0,15"
+                                       HorizontalAlignment="Left" />
+                            <PasswordBox Grid.Row="3"
+                                         Padding="0,5"
+                                         Width="255"
+                                         BorderThickness="0,0,0,1"
+                                         HorizontalAlignment="Left"
+                                         PasswordChanged="passwordBox_PasswordChanged"
+                                         PasswordChar="❤" />
+                        </Grid>
+                        <Button Content="Connexion"
+                                Foreground="White"
+                                Background="Black"
+                                Margin="0,25"
+                                Height="35"
+                                Width="250"
+                                Click="Button_Click_Connexion">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border x:Name="LoginBorder"
+                                                        Background="{TemplateBinding Background}"
+                                                        CornerRadius="16">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center" />
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver"
+                                                             Value="True">
+                                                        <Setter Property="Background"
+                                                                Value="AliceBlue"
+                                                                TargetName="LoginBorder" />
+                                                        <Setter Property="TextBlock.Foreground"
+                                                                Value="Black"
+                                                                TargetName="LoginBorder" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+
             </StackPanel>
         </Grid>
     </Grid>

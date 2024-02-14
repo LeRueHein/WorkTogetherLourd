@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Syncfusion.XlsIO;
+using System;
+using System.Windows;
 using WebAndSoft.Internal;
 using WorkTogether.DBLib.Class;
 
@@ -44,15 +46,26 @@ namespace WorkTogether.Wpf.ViewModels
         #endregion
 
         #region Method
+        /// <summary>
+        /// Methode pour vérifier le login et mot de passe des users
+        /// </summary>
         internal void ConnexionValidator()
         {
             using (ClientLegerBddContext context = new ClientLegerBddContext())
             {
+
                 User? user = context.Users.FirstOrDefault(u => u.Email == Login);
                 if (user != null)
                 {
+
                     string userPassword = user.Password.Replace("$2y$13$", "$2a$13$");
                     IsLogin = BCrypt.Net.BCrypt.Verify(Password, userPassword);
+                    (Application.Current as App).User = user;
+                }
+                if (!IsLogin)
+                {
+                    MessageBox.Show("Votre email ou votre mot de passe est faux !", "Erreur", MessageBoxButton.OK,MessageBoxImage.Exclamation);
+
                 }
 
 

@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using WorkTogether.Wpf.ViewModels;
 using System.IO;
+using System.Diagnostics;
 
 
 namespace WorkTogether.Wpf.Views
@@ -21,6 +22,13 @@ namespace WorkTogether.Wpf.Views
         {
             ((ReservationViewModel)this.DataContext).ExportToPdf();
 
+
+            var psi = new ProcessStartInfo();
+            psi.FileName = @"c:\windows\explorer.exe";
+            psi.Arguments = "C:\\Users\\Utilisateur\\Desktop\\WorkToGether\\WorkTogether\\WorkTogether.Wpf\\bin\\Debug\\net8.0-windows";
+            Process.Start(psi);
+
         }
+        
     }
 }
